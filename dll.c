@@ -19,7 +19,7 @@ void destroy(List* list){
     free(list);
 }
 
-void* print(List* list){
+char* print(List* list){
     char *res= (char*)malloc((list->size)*(sizeof(char)));
     char *iter=res;
     Node *p=list->head;

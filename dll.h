@@ -17,6 +17,13 @@ List* construct();
 
 void destroy(List* list);
 
-void* print(List* list);
+char* print(List* list);
 
 void pushback(List* list, char el);
+
+void pushfront(List* list, char el);
+
+char popback(List* list);
+
+char popfront(List* list);
+
