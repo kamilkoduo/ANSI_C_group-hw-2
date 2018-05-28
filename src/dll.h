@@ -27,3 +27,6 @@ char popback(List* list);
 
 char popfront(List* list);
 
+int size(List* list);
+
+

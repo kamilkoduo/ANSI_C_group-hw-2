@@ -3,4 +3,4 @@ project(group_hw_2 C)
 
 set(CMAKE_C_STANDARD 99)
 
-add_executable(group_hw_2 main.c dll.c dll.h)
+add_executable(group_hw_2 src/dll.c src/dll.h tests/test_dll.c )
