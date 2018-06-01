@@ -1,35 +1,80 @@
-//
-// Created by puzankova 30.05.18
-//
 
-#include "priority_queue.h"
+#include "task.h"
 
-struct Node
-{
+static int size = 0;
+struct Node *queue = NULL;
+struct Node {
     double value;
     int key;
-    struct Node* next;
-    struct Node* prev;
+    struct Node *next;
+    struct Node *prev;
 
 };
 
-int insert(double value, int key)
-{
-    // return the exit code:
-    //	0 - success
-    //	1 - not enough free space in the queue
-    //  2 - other
-
-    // the queue size is 100 elements
-
-    /* YOUR CODE */
+struct Node *get_node(double value, int key, struct Node *next, struct Node *prev) {
+    struct Node *buff = malloc(sizeof(struct Node));
+    buff->value = value;
+    buff->key = key;
+    buff->prev = prev;
+    buff->next = next;
+    return buff;
 }
 
-double extract_min()
-{
-    // returns the min value and delete it from queue
-    // if queue is empty returns -infinity and print error message to the screen
-    /* YOUR CODE */
+int insert(double value, int key) {
+    if (size == 100) {
+        return 1;
+    }
+    if (queue == NULL) {
+        struct Node *temp = get_node(value, key, NULL, NULL);
+        queue = temp;
+        size++;
+        return 0;
+
+    } else {
+        struct Node *buf = queue;
+        while (buf->key <= key && buf != NULL) {
+            if (buf->next == NULL) {
+                struct Node *temp = get_node(value, key, NULL, buf);
+                buf->next = temp;
+                size++;
+                return 0;
+            }
+            buf = buf->next;
+        }
+        struct Node *temp = get_node(value, key, buf, buf->prev);
+        if (buf->prev == NULL) {
+            buf->prev = temp;
+            queue = buf->prev;
+        }
+        else {
+            buf->prev->next = temp;
+            buf->prev = temp;
+        }
+        size++;
+        return 0;
+    }
 }
 
-struct Node *queue = NULL; // it is your queue to work with it
+void show_list() {
+    struct Node *buf = queue;
+    int i = 0;
+    printf("List:\n");
+    while (i < size) {
+        printf("(%d,%d)", buf->key, (int) buf->value);
+        buf = buf->next;
+        i++;
+    }
+    printf("\n");
+}
+
+double extract_min() {
+    double res=queue->value;
+    struct Node * buf= queue;
+    queue=queue->next;
+    free(buf);
+    if (queue!=NULL){
+        queue->prev=NULL;
+    }
+    size--;
+    return res;
+}
