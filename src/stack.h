@@ -1,5 +1,5 @@
 //
-// Created by puzankova 30.05.18
+// Created by KILO 1.06.18
 //
 
 #ifndef __STACK_H_
@@ -7,6 +7,7 @@
 
 #include "stdio.h"
 #include "stdlib.h"
+#include <math.h>
 
 int push(double value);
 double pop();

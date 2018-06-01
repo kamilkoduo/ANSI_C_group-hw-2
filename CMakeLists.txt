@@ -1,7 +1,29 @@
+
 cmake_minimum_required(VERSION 3.10)
 project(group_hw_2 C)
 
-set(CMAKE_C_STANDARD 99)
+set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -Wall -Wextra -Wshadow")
 
-add_executable(group_hw_2 src/dll.c src/dll.h tests/test_dll.c )
+set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -g")
+
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/CMakeModules/")
+
+enable_testing()
+
+set(CMAKE_C_STANDARD 99)
+include_directories(${CHECK_INCLUDE_DIRS})
+
+find_package(Check REQUIRED)
+find_package(Threads REQUIRED)
+
+
+
 add_executable(test_priority_queue src/priority_queue.c src/priority_queue.h tests/test_priority_queue.c)
+
+add_executable(group-hw-2  src/stack.c src/stack.h tests/test_stack.c)
+
+
+target_link_libraries(group-hw-2 ${CHECK_LIBRARIES} ${CMAKE_THREAD_LIBS_INIT})
+
+
+add_test(test_stack ${CMAKE_CURRENT_BINARY_DIR}/test_binarize)

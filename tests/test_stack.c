@@ -2,34 +2,60 @@
 // Created by cubazis on 24.05.18.
 //
 #include <check.h>
-#include "stack.h"
+#include "../src/stack.h"
+
 
 START_TEST (test_pop)
 		{
-			//YOUR CODE HERE
-		}
+		    printf("%s\n", "Test POP");
+			push(10);
+            ck_assert_int_eq(pop(), 10);
+			ck_assert(pop()== -INFINITY);
+
+            printf("%s\n", "");
+        }
 END_TEST
 
 
 START_TEST (test_peek)
-{
-	//YOUR CODE HERE
-}
+    {
+        printf("%s\n", "Test PEEK");
+        push(10);
+        ck_assert_int_eq(pick(), 10);
+        ck_assert_int_eq(pick(), 10);
+        pop();
+        ck_assert(pick()== -INFINITY);
+
+        printf("%s\n", "");
+    }
 END_TEST
 
 START_TEST (test_push)
-{
-	//YOUR CODE HERE												
-}
+    {
+        printf("%s\n", "Test PUSH");
+        for(int i=0;i<50;i++)
+            ck_assert_int_eq(push(i), 0);
+
+        ck_assert_int_eq(push(10), 1);
+        ck_assert_int_eq(pick(), 49);
+
+        pop();
+        ck_assert_int_eq(push(10), 0);
+        ck_assert_int_eq(pick(), 10);
+
+        printf("%s\n", "");
+    }
 END_TEST
 
 Suite* str_suite (void) {
 	Suite *suite = suite_create("stack");
 	TCase *tcase = tcase_create("case");
-	tcase_add_test(tcase, test_push);
+
 	tcase_add_test(tcase, test_pop);
 	tcase_add_test(tcase, test_peek);
-	suite_add_tcase(suite, tcase);
+    tcase_add_test(tcase, test_push);
+
+    suite_add_tcase(suite, tcase);
 	return suite;
 }
 
