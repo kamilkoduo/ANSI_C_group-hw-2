@@ -1,5 +1,5 @@
 
-#include "task.h"
+#include "priority_queue.h"
 
 static int size = 0;
 struct Node *queue = NULL;
