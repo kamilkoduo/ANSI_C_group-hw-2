@@ -1,4 +1,5 @@
 
+#include <math.h>
 #include "priority_queue.h"
 
 static int size = 0;
@@ -68,6 +69,10 @@ void show_list() {
 }
 
 double extract_min() {
+    if (size==0){
+        printf("Error!Queue is empty\n");
+        return -INFINITY;
+    }
     double res=queue->value;
     struct Node * buf= queue;
     queue=queue->next;
