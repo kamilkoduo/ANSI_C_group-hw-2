@@ -53,7 +53,7 @@ START_TEST (test_size)
 END_TEST
 
 Suite *str_suite(void) {
-    Suite *suite = suite_create("Home assignment 1");
+    Suite *suite = suite_create("HA 2. Proprity Queue Test Suite");
     TCase *tcase = tcase_create("case");
 
     tcase_add_test(tcase, test_construct);

@@ -48,7 +48,7 @@ START_TEST (test_push)
 END_TEST
 
 Suite* str_suite (void) {
-	Suite *suite = suite_create("stack");
+	Suite *suite = suite_create("HA 2. Stack Test Suite");
 	TCase *tcase = tcase_create("case");
 
 	tcase_add_test(tcase, test_pop);
